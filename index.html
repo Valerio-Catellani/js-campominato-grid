@@ -18,19 +18,22 @@
 
 <body>
   <div class="container my-5">
-    <!-- Large button groups (default and split) -->
-    <div class="dropdown-center">
-      <button id="drop-down-difficulty" class="btn btn-lg btn-secondary" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Dropdown button
-      </button>
-      <ul id="difficulty" class="dropdown-menu dropdown-menu-dark d-block d-none">
-        <li><a class="dropdown-item" href="#" id="easy" value="100">Easy</a></li>
-        <li><a class="dropdown-item" href="#" id="normal">Normal</a></li>
-        <li><a class="dropdown-item" href="#" id="hard">Hard</a></li>
-      </ul>
+    <div id="user-control" class="d-flex justify-content-center ">
+      <div class="dropdown-center">
+        <button id="drop-down-difficulty" class="btn btn-lg btn-secondary mt-3 mx-3" type="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Select Difficulty
+        </button>
+        <ul id="difficulty" class="dropdown-menu dropdown-menu-dark d-block d-none mx-4">
+          <li id="easy"><a class="dropdown-item" href="#">Easy</a></li>
+          <li id="normal"><a class="dropdown-item" href="#">Normal</a></li>
+          <li id="hard"><a class="dropdown-item" href="#">Hard</a></li>
+        </ul>
+      </div>
+      <button id="send-button" type="button" class="btn btn-lg m-3 btn-success" disabled>Invia i dati</button>
     </div>
-    <button id="send-button" type="button" class="btn btn-lg  btn-success">Invia i dati</button>
+
+
     <div id="response">
     </div>
   </div>

@@ -19,14 +19,15 @@ const sendButton = document.getElementById("send-button");
 //& OUTPUT
 const response = document.getElementById("response");
 
+//& VARIABLES
+let difficulty;
+
 
 sendButton.addEventListener('click', function () {
     document.getElementById("wrapper") ? document.getElementById("wrapper").remove() : ""; //rimuovi il wrapper se esiste già
-    //controllo sul numero da passare
     const wrapper = document.createElement('div'); //creo il wrapper
     wrapper.setAttribute("id", "wrapper");           // setto i suoi attributi
     wrapper.classList = "d-flex flex-wrap container p-5 my-3";  //e classi
-    let difficulty = 100;
     for (let i = 0; i < difficulty; i++) {
         wrapper.appendChild(createCell(i + 1, difficulty))
     }
@@ -46,12 +47,13 @@ function createCell(cellIndex, difficulty) {
     });
     return cell
 }
+
+//! -----------------BONUS-----------------------
 //& BUTTONS
 //& dropdown
 const difficultyMenu = document.getElementById("drop-down-difficulty");
 
 difficultyMenu.addEventListener('click', function () {
-    console.log(document.getElementById("difficulty"));
     document.getElementById("difficulty").classList.toggle("d-none")
 })
 
@@ -59,9 +61,11 @@ document.querySelectorAll("#difficulty li").forEach(element => {
     element.addEventListener('click', function () {
         difficulty = element.id === "easy" ? 100 : element.id === "normal" ? 81 : 49;
         difficultyMenu.innerHTML = element.innerHTML;
-        document.getElementById("difficulty").classList.toggle("d-none")
+        document.getElementById("difficulty").classList.toggle("d-none");
+        sendButton.disabled = false;
     })
 })
+
 
 
 

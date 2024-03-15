@@ -1,5 +1,10 @@
+button {
+    width: 200px;
+}
+
 .box {
     cursor: crosshair;
+    aspect-ratio: 1 / 1;
 }
 
 .selected {
@@ -7,6 +12,13 @@
 }
 
 .box-100 {
-    width: 10%;
-    aspect-ratio: 1 / 1;
+    width: calc(100% / 10);
+}
+
+.box-81 {
+    width: calc(100% / 9);
+}
+
+.box-49 {
+    width: calc(100% / 7);
 }
