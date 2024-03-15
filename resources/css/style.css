@@ -1,0 +1,12 @@
+.box {
+    cursor: crosshair;
+}
+
+.selected {
+    background-color: aqua;
+}
+
+.box-100 {
+    width: 10%;
+    aspect-ratio: 1 / 1;
+}
