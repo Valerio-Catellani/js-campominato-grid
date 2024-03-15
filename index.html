@@ -18,18 +18,27 @@
 
 <body>
   <div class="container my-5">
-    <div class="mb-3">
-      <label for="user-input" class="form-label">Input Utente</label>
-      <input type="text" class="form-control" id="user-input" placeholder="input utente">
+    <!-- Large button groups (default and split) -->
+    <div class="dropdown-center">
+      <button id="drop-down-difficulty" class="btn btn-lg btn-secondary" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Dropdown button
+      </button>
+      <ul id="difficulty" class="dropdown-menu dropdown-menu-dark d-block d-none">
+        <li><a class="dropdown-item" href="#" id="easy" value="100">Easy</a></li>
+        <li><a class="dropdown-item" href="#" id="normal">Normal</a></li>
+        <li><a class="dropdown-item" href="#" id="hard">Hard</a></li>
+      </ul>
     </div>
     <button id="send-button" type="button" class="btn btn-lg  btn-success">Invia i dati</button>
-    <div id="response" class="container border rounded-2 p-5 my-3">
+    <div id="response">
     </div>
   </div>
 
 
   <script src="resources/js/hypeUtility.js" type="text/javascript"></script>
-  <script src="resources/js/script.js" type="text/javascript"></script>
+  <script src="resources/js/script.js" type="text/javascript"></script>>
+
 </body>
 
 <style>

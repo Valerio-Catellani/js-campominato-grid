@@ -13,38 +13,55 @@ TODO con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise 
 */
 
 //& INUPUT
-const userInput = document.getElementById("user-input");
-//&BUTTON
+
+//& BUTTON
 const sendButton = document.getElementById("send-button");
-//&OUTPUT
+//& OUTPUT
 const response = document.getElementById("response");
 
 
 sendButton.addEventListener('click', function () {
+    document.getElementById("wrapper") ? document.getElementById("wrapper").remove() : ""; //rimuovi il wrapper se esiste già
     //controllo sul numero da passare
-    const wrapper = document.createElement('div')
-    wrapper.setAttribute("id", "wrapper")
-    wrapper.classList = "d-flex flex-wrap container p-5 my-3"
-    createCells(100, wrapper);
+    const wrapper = document.createElement('div'); //creo il wrapper
+    wrapper.setAttribute("id", "wrapper");           // setto i suoi attributi
+    wrapper.classList = "d-flex flex-wrap container p-5 my-3";  //e classi
+    let difficulty = 100;
+    for (let i = 0; i < difficulty; i++) {
+        wrapper.appendChild(createCell(i + 1, difficulty))
+    }
     response.append(wrapper)
-    console.log(wrapper);
 })
 
-//^FUNCTION: CREATECELLS
-function createCells(numberOfCells, container) {
-    for (let i = 0; i < numberOfCells; i++) {
-        let cell = document.createElement('div');
-        cell.setAttribute("id", `box-${i + 1}`);
-        cell.className = `box-${numberOfCells} box d-flex justify-content-center align-items-center border border-2`;
-        cell.value = i + 1;
-        console.log(cell.value);
-        cell.innerHTML = i + 1;
-        container.append(cell);
-        cell.addEventListener('click', function () {
-            cell.classList.toggle("selected")
-            console.log(`${cell.value}`);
-        })
-    }
+//^ FUNCTION: CREATECELL
+function createCell(cellIndex, difficulty) {
+    let cell = document.createElement('div');
+    cell.setAttribute("id", `box-${cellIndex}`);
+    cell.className = `box-${difficulty} box d-flex justify-content-center align-items-center border border-2`;
+    cell.value = cellIndex;
+    cell.innerHTML = cellIndex;
+    cell.addEventListener('click', function () {
+        cell.classList.toggle("selected")
+        console.log(`${cell.value}`);
+    });
+    return cell
 }
+//& BUTTONS
+//& dropdown
+const difficultyMenu = document.getElementById("drop-down-difficulty");
+
+difficultyMenu.addEventListener('click', function () {
+    console.log(document.getElementById("difficulty"));
+    document.getElementById("difficulty").classList.toggle("d-none")
+})
+
+document.querySelectorAll("#difficulty li").forEach(element => {
+    element.addEventListener('click', function () {
+        difficulty = element.id === "easy" ? 100 : element.id === "normal" ? 81 : 49;
+        difficultyMenu.innerHTML = element.innerHTML;
+        document.getElementById("difficulty").classList.toggle("d-none")
+    })
+})
+
 
 
