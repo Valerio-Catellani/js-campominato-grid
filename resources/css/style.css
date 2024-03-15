@@ -1,10 +1,33 @@
-button {
-    width: 200px;
+/*BODY*/
+body {
+    background-color: rgb(56, 55, 55);
+    background-image: url(../img/field-2.jpg);
+    background-size: cover;
+    background-position: 20% 50%;
+    background-attachment: fixed;
+    font-family: "Madimi One", sans-serif;
 }
 
+
+
+button {
+    width: 200px;
+    box-shadow: 2px solid white;
+}
+
+#response {
+    margin-top: 10px;
+    width: 600px;
+}
+
+
+/*grill*/
 .box {
     cursor: crosshair;
     aspect-ratio: 1 / 1;
+    background-color: rgb(97, 94, 94);
+    font-size: 2rem;
+    border: rgb(66, 66, 66) 3px solid;
 }
 
 .selected {
@@ -21,4 +44,44 @@ button {
 
 .box-49 {
     width: calc(100% / 7);
+}
+
+
+/*MY BONUS*/
+
+.zone {
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    background-color: transparent;
+    border: transparent;
+}
+
+.zone .front,
+.zone .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+}
+
+.zone .front {
+    transform: rotateY(0deg);
+}
+
+.zone .back {
+    transform: rotateY(180deg);
+
+}
+
+.zone.is-flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.zone.is-flipped .back {
+    transform: rotateY(0deg);
 }

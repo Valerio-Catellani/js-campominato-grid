@@ -18,6 +18,7 @@ TODO con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise 
 const sendButton = document.getElementById("send-button");
 //& OUTPUT
 const response = document.getElementById("response");
+const title = document.getElementById('title');
 
 //& VARIABLES
 let difficulty;
@@ -25,24 +26,39 @@ let difficulty;
 
 sendButton.addEventListener('click', function () {
     document.getElementById("wrapper") ? document.getElementById("wrapper").remove() : ""; //rimuovi il wrapper se esiste già
+    title.classList.contains('reduction-done') ? '' : reduction(title, 75, 30);
     const wrapper = document.createElement('div'); //creo il wrapper
     wrapper.setAttribute("id", "wrapper");           // setto i suoi attributi
-    wrapper.classList = "d-flex flex-wrap container p-5 my-3";  //e classi
+    wrapper.classList = "d-flex flex-wrap container p-3";  //e classi
     for (let i = 0; i < difficulty; i++) {
-        wrapper.appendChild(createCell(i + 1, difficulty))
+        const zone = document.createElement('div');
+        zone.setAttribute('id', `zone-${i + 1}`);
+        zone.className = `box-${difficulty} box zone is-flipped text-white`;
+        //let backCell = createCell(`mistery-${i + 1}`, "?", difficulty); riferimento all'index
+        let backCell = createCell(i + 1, "?", difficulty, null);
+        backCell.classList.add('back');
+        let frontCell = createCell(i + 1, i + 1, difficulty, "selected");
+        frontCell.classList.add('front')
+        zone.appendChild(backCell);
+        zone.appendChild(frontCell)
+        zone.addEventListener('click', function () {
+            this.classList.remove("is-flipped");
+        })
+        wrapper.appendChild(zone)
     }
     response.append(wrapper)
 })
 
+
 //^ FUNCTION: CREATECELL
-function createCell(cellIndex, difficulty) {
+function createCell(cellIndex, content, difficulty, toggleClass) {
     let cell = document.createElement('div');
-    cell.setAttribute("id", `box-${cellIndex}`);
-    cell.className = `box-${difficulty} box d-flex justify-content-center align-items-center border border-2`;
+    //cell.setAttribute("id", `box-${cellIndex}`);
+    cell.className = `box-${difficulty} box d-flex justify-content-center align-items-center`;
     cell.value = cellIndex;
-    cell.innerHTML = cellIndex;
+    cell.innerHTML = content;
     cell.addEventListener('click', function () {
-        cell.classList.toggle("selected")
+        cell.classList.toggle(`${toggleClass}`)
         console.log(`${cell.value}`);
     });
     return cell
@@ -66,6 +82,26 @@ document.querySelectorAll("#difficulty li").forEach(element => {
     })
 })
 
+
+
+//! ---------- MY BONUS ----------------
+
+
+//& TITLE
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function reduction(element, start, end) {
+    while (start > end) {
+        await delay(10); // Aspetta 100 millisecondi
+        start -= 1; // Decrementa la larghezza
+        element.style.width = `${start}%`; // Applica la nuova larghezza
+    }
+    element.classList.add('reduction-done')
+}
+
+//& CARDS
 
 
 
